@@ -1,6 +1,6 @@
 ﻿using System.Data.SqlClient;
 
-namespace ConnectingDatabase
+namespace ConnectingDatabase.Models
 {
     public class Histories
     {
@@ -12,17 +12,7 @@ namespace ConnectingDatabase
         public int DepartmentID { get; set; }
         public string JobID { get; set; }
 
-        public void ShowGetHistories()
-        {
-            // Get History
-            List<Histories> history = GetHistories();
-            foreach (var h in history)
-            {
-                Console.WriteLine($"Start Date: {h.StartDate}, EmployeeID: {h.EmployeeID}, " +
-                    $"End Date: {h.EndDate}, DepartmentID: {h.DepartmentID}, JobID: {h.JobID}");
-            }
-        }
-        static List<Histories> GetHistories()
+        public List<Histories> GetHistories()
         {
             List<Histories> Histories = new List<Histories>();
             try

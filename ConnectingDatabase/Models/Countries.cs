@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
 
-namespace ConnectingDatabase
+namespace ConnectingDatabase.Models
 {
     public class Countries
     {
@@ -12,16 +12,6 @@ namespace ConnectingDatabase
         public string name { get; set; }
         public int RegionId { get; set; }
 
-        //Getall Country
-        public void ShowGetALlCountry()
-        {
-            // ini Get Country
-            List<Countries> con = GetCountry();
-            foreach (var country in con)
-            {
-                Console.WriteLine($"id: {country.id} Name: {country.name} region_id: {country.RegionId}");
-            }
-        }
         public List<Countries> GetCountry()
         {
             List<Countries> country = new List<Countries>();
@@ -59,20 +49,7 @@ namespace ConnectingDatabase
             return country;
         }
 
-        //getcountry by id
-        public void ShowGetCountryByID()
-        {
-            //search by ID Country
-            Console.WriteLine("Masukan No Id Yang Ingin Di lihat: ");
-            string id = helper.ValidasiString(1, 50);
-            List<Countries> countries = GetCountryByID(id);
-            foreach (var c in countries)
-            {
-                Console.WriteLine($"ID: {c.id}  ,nama:  {c.name}, RegionID: {c.RegionId}");
-            }
-        }
-
-        static List<Countries> GetCountryByID(string id)
+        public List<Countries> GetCountryByID(string id)
         {
             List<Countries> cont = new List<Countries>();
             try
@@ -114,31 +91,6 @@ namespace ConnectingDatabase
             }
             connection.Close();
             return cont;
-        }
-
-
-
-
-        //Insert
-        public void ShowInsertCountry()
-        {
-            //Insert Country
-            Console.WriteLine("Insert");
-            Console.WriteLine("Masukan Nama Country:");
-            Console.Write("> ");
-            string nama = helper.ValidasiString(1, 50);
-            Console.WriteLine("Masukan Id Country (2 Character)");
-            Console.Write("> ");
-            string id = helper.ValidasiString(1, 50);
-            Console.WriteLine("Masukan id Region:");
-            Console.Write("> ");
-            int regId = helper.ValidasiINT();
-            int isInsertSuccess = InsertCountry(nama, id, regId);
-            if (isInsertSuccess > 0)
-            {
-                Console.WriteLine("Data Berhasil Di Tambahkan !! ");
-            }
-            else Console.WriteLine("Data Gagal Di Tambahkan !!");
         }
 
         // Insert Country
@@ -195,27 +147,7 @@ namespace ConnectingDatabase
             connection.Close();
             return result;
         }
-        //Update
-        public void ShowUpdateCountry()
-        {
-            // Update Country
-            Console.WriteLine("Update");
-            Console.WriteLine("Masukan Id Yang Ingin di Update");
-            Console.Write("> ");
-            string id = helper.ValidasiString(2, 2);
-            Console.WriteLine("Masukan Nama Yang Ingin Di ganti");
-            Console.Write("> ");
-            string nama = helper.ValidasiString(1, 50);
-            int isUpdateSuccess = UpdateCountry(id, nama);
-            if (isUpdateSuccess > 0)
-            {
-                Console.WriteLine("Data Berhasil Di Update");
-            }
-            else
-            {
-                Console.WriteLine("Data Gagal Di Update");
-            }
-        }
+
         //Update Country
         public static int UpdateCountry(string id, string nama)
         {
@@ -264,23 +196,6 @@ namespace ConnectingDatabase
             return result;
         }
 
-
-
-
-        //Delete
-        public void ShowDeleteCountry()
-        {
-            Console.WriteLine("Delete");
-            Console.WriteLine("Masukan id Yang ingin di delete");
-            Console.Write("> ");
-            string input = helper.ValidasiString(2, 2);
-            int isSuccessfull = DeleteCountry(input);
-            if (isSuccessfull > 0)
-            {
-                Console.WriteLine("Data Berhasil Di Delete");
-            }
-            else Console.WriteLine("Data Gagal Di Delete");
-        }
         public static int DeleteCountry(string id)
         {
             int result = 0;

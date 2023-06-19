@@ -1,6 +1,6 @@
 ﻿using System.Data.SqlClient;
 
-namespace ConnectingDatabase
+namespace ConnectingDatabase.Models
 {
     public class Jobs
     {

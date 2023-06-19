@@ -1,6 +1,6 @@
 ﻿using System.Data.SqlClient;
 
-namespace ConnectingDatabase
+namespace ConnectingDatabase.Models
 {
     public class Location
     {
@@ -13,16 +13,7 @@ namespace ConnectingDatabase
         public string StateProvince { get; set; }
         public string CountryID { get; set; }
 
-        public void ShowGetLocations()
-        {
-            //ini Get Locations
-            List<Location> locations = GetLocations();
-            foreach (var loc in locations)
-            {
-                Console.WriteLine($"id: {loc.Id} StreetAddress: {loc.StreetAddress} City: {loc.City}\n" +
-                    $"StateProvince: {loc.StateProvince} Country_ID: {loc.CountryID}");
-            }
-        }
+
 
         public List<Location> GetLocations()
         {

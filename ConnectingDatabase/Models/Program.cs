@@ -1,6 +1,6 @@
 ﻿using System.Data.SqlClient;
 
-namespace ConnectingDatabase
+namespace ConnectingDatabase.Models
 {
     internal class Program
     {
@@ -10,7 +10,8 @@ namespace ConnectingDatabase
         {
 
             connection = new SqlConnection(connectionString);
-            Menus.MainMenu();
+            Menus menu = new Menus();
+            menu.MainMenu();
 
         }
 

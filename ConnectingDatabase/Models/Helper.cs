@@ -1,4 +1,4 @@
-﻿namespace ConnectingDatabase
+﻿namespace ConnectingDatabase.Models
 {
     public class Helper
     {

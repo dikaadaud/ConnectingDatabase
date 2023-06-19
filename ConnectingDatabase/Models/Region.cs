@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
 
-namespace ConnectingDatabase
+namespace ConnectingDatabase.Models
 {
     public class Region
     {
@@ -10,7 +10,7 @@ namespace ConnectingDatabase
         public Helper helper = new Helper();
         public int id { get; set; }
         public string name { get; set; }
-        public static List<Region> GetAllRegion()
+        public List<Region> GetAllRegion()
         {
             var region = new List<Region>();
             try
@@ -47,26 +47,6 @@ namespace ConnectingDatabase
             }
             connection.Close();
             return region;
-        }
-
-        public void ShowRegion()
-        {
-            List<Region> reg = GetAllRegion();
-            foreach (var regi in reg)
-            {
-                Console.WriteLine("id: {0} Name: {1}", regi.id, regi.name);
-            }
-        }
-
-        public void ShowRegionByid()
-        {
-            Console.WriteLine("Masukan No Id Yang Ingin Di lihat: ");
-            int id = helper.ValidasiINT();
-            List<Region> reg = GetRegionByID(id);
-            foreach (var region in reg)
-            {
-                Console.WriteLine($"ID: {region.id} ,nama: {region.name}");
-            }
         }
 
         public List<Region> GetRegionByID(int id)
@@ -112,22 +92,6 @@ namespace ConnectingDatabase
             return reg;
         }
 
-        // Delete Region
-        public void ShowDeleteRegion()
-        {
-            Console.WriteLine("Delete");
-            Console.WriteLine("Masukan id Yang ingin di delete");
-            Console.Write("> ");
-            int id = helper.ValidasiINT();
-            int isSuccessful = DeleteRegion(id);
-            if (isSuccessful > 0)
-            {
-                Console.WriteLine("Data Berhasil Di Delete");
-            }
-            else Console.WriteLine("Data Gagal Di Delete");
-
-        }
-
         public int DeleteRegion(int id)
         {
             int result = 0;
@@ -166,26 +130,6 @@ namespace ConnectingDatabase
             return result;
         }
 
-        //Update Region
-        public void ShowUpdateRegions()
-        {
-            Console.WriteLine("Update");
-            Console.WriteLine("Masukan Id Yang Ingin di Update");
-            Console.Write("> ");
-            int id = helper.ValidasiINT();
-            Console.WriteLine("Masukan Nama Yang Ingin Di ganti");
-            Console.Write("> ");
-            string nama = helper.ValidasiString(1, 50);
-            int isUpdateSuccess = UpdateRegion(id, nama);
-            if (isUpdateSuccess > 0)
-            {
-                Console.WriteLine("Data Berhasil Di Update");
-            }
-            else
-            {
-                Console.WriteLine("Data Gagal Di Update");
-            }
-        }
         public int UpdateRegion(int id, string nama)
         {
             int result = 0;
@@ -231,21 +175,6 @@ namespace ConnectingDatabase
             }
             connection.Close();
             return result;
-        }
-
-
-        //insert region
-        public void ShowInsertRegion()
-        {
-            Console.WriteLine("Insert");
-            Console.Write("Masukan Nama Region:");
-            string nama = helper.ValidasiString(1, 50);
-            int isInserSuccessfull = InsertRegion(nama);
-            if (isInserSuccessfull > 0)
-            {
-                Console.WriteLine("Data berhasil di tambhakan !!");
-            }
-            else Console.WriteLine("Data gagal di tambahkan !!");
         }
 
         public int InsertRegion(string name)

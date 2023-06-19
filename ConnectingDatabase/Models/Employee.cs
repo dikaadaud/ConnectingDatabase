@@ -1,6 +1,6 @@
 ﻿using System.Data.SqlClient;
 
-namespace ConnectingDatabase
+namespace ConnectingDatabase.Models
 {
     public class Employee
     {
@@ -18,18 +18,6 @@ namespace ConnectingDatabase
         public string JobID { get; set; }
         public int DepartmentID { get; set; }
 
-        public void ShowGetEmployee()
-        {
-            // Get Employee
-            List<Employee> employees = GetEmployee();
-            foreach (var emp in employees)
-            {
-                Console.WriteLine($"id: {emp.Id}, FirstName: {emp.FirstName}, LastName: {emp.LastName}\n" +
-                    $"Email: {emp.Email}, PhoneNNumber: {emp.PhoneNumber} " +
-                    $"Salary: {emp.Salary}, Commision: {emp.ComissionPct}, HireDate: {emp.HireDate}, " +
-                    $"ManagerID: {emp.ManagerID}, JobID: {emp.JobID}, DepartmentID: {emp.DepartmentID}");
-            }
-        }
         public List<Employee> GetEmployee()
         {
             List<Employee> employees = new List<Employee>();

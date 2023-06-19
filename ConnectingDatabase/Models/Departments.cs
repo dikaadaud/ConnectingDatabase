@@ -1,6 +1,6 @@
 ﻿using System.Data.SqlClient;
 
-namespace ConnectingDatabase
+namespace ConnectingDatabase.Models
 {
     public class Departments
     {
@@ -11,16 +11,8 @@ namespace ConnectingDatabase
         public int LocationID { get; set; }
         public int ManagerID { get; set; }
 
-        public void ShowGetDepartments()
-        {
-            //Get Department
-            List<Departments> departments = GetDepartment();
-            foreach (var debt in departments)
-            {
-                Console.WriteLine($"ID: {debt.Id}, Name: {debt.Name}, LocationID: {debt.LocationID}, managerID: {debt.ManagerID}");
-            }
-        }
-        static List<Departments> GetDepartment()
+
+        public List<Departments> GetDepartment()
         {
             List<Departments> departments = new List<Departments>();
             try
